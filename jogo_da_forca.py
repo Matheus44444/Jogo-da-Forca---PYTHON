@@ -2,23 +2,17 @@ import unicodedata
 import re
 
 def formatar_texto(texto):
-    # Remove espaços no início e no fim
     texto = texto.strip()
 
-    # Remove acentos
     texto = unicodedata.normalize('NFD', texto)
     texto = texto.encode('ascii', 'ignore').decode('utf-8')
 
-    # Remove números
     texto = re.sub(r'\d+', '', texto)
 
-    # Deixa tudo minúsculo
     texto = texto.lower()
 
     return texto
 
-
-# Definição da palavra
 palavra = input("Digite a palavra secreta: ")
 palavra = formatar_texto(palavra)
 
@@ -61,8 +55,6 @@ while vidas > 0 and "_" in letras_descobertas:
         print("Errou!")
         vidas -= 1
 
-
-# Resultado final
 if "_" not in letras_descobertas:
     print("\nParabéns! Você ganhou!")
     print("A palavra era:", palavra)
